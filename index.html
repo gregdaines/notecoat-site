@@ -49,6 +49,12 @@ main { padding-top: 56px; }
 
 .teaser { display: block; width: 100%; height: auto; margin-top: 44px; }
 .end { text-align: center; }
+.notify { margin-top: 26px; }
+.notify label { display: block; font-size: 17px; margin-bottom: 10px; }
+.notify .row { display: flex; justify-content: center; gap: 8px; }
+.notify input { flex: 0 1 300px; min-width: 0; padding: 10px 12px; border: 1px solid var(--ink); border-radius: 0; background: #fbf8f0; color: var(--text); font: 400 17px/1.3 var(--serif); }
+.notify button { padding: 10px 16px; border: 1px solid var(--ink); border-radius: 0; background: var(--ink); color: var(--paper); font: 500 14px/1.3 var(--caps); letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
+.thanks { margin: 26px 0 0; font-size: 17px; }
 .contact { margin-top: 56px; }
 .contact h2 { font: 500 13px/1 var(--caps); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
 .contact a { font-size: 21px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
@@ -90,6 +96,16 @@ footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wr
 <div class="end">
     <p class="soon">Coming soon</p>
 
+    <form class="notify" id="notify" action="https://docs.google.com/forms/d/e/1FAIpQLSeTq-vhjOCNwZxffhW6ky3nlAQGdrccC4ke5RQY3cfWrHj6-A/formResponse" method="post" target="notify-sink">
+      <label for="notify-email">Get an email when NoteCoat is ready.</label>
+      <div class="row">
+        <input id="notify-email" name="entry.1425037779" type="email" placeholder="Your email" autocomplete="email" required>
+        <button type="submit">Notify me</button>
+      </div>
+    </form>
+    <p class="thanks" id="notify-thanks" hidden>Thank you. We will email you when NoteCoat is ready.</p>
+    <iframe name="notify-sink" title="" hidden></iframe>
+
     <p class="close">You are what you keep.</p>
 
     <section class="contact">
@@ -104,5 +120,14 @@ footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wr
     <span>&copy; 2026 NoteCoat</span>
   </footer>
 </div>
+<script>
+document.getElementById('notify').addEventListener('submit', function () {
+  var form = this;
+  setTimeout(function () {
+    form.hidden = true;
+    document.getElementById('notify-thanks').hidden = false;
+  }, 0);
+});
+</script>
 </body>
 </html>
